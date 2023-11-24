@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BeautyStore.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Quản lý tin tức</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index","AdminHome")">Home</a></li>
+                <li class="breadcrumb-item active">Quản lý tin tức</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <p>
+        @Html.ActionLink("Thêm mới", "Create")
+    </p>
+    <table class="table">
+        <tr style="text-align: center">
+            <th>Hình ảnh minh họa</th>
+            <th> Nội dung</th>
+            <th>Công cụ</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/image/@item.NewsImage" style="width:250px" />
+                </td>
+                <td>
+                    <h3>@item.NewsTitle</h3>
+                    @item.NewsContent.Substring(0, 300) ...
+                </td>
+                <td style="width:15%; text-align: center">
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.NewsID }) <br />
+
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.NewsID })  <br />
+
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.NewsID })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </main>

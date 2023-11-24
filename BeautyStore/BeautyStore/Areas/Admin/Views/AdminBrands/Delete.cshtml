@@ -1,0 +1,20 @@
+﻿@model BeautyStore.Models.Brand
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_Layout.cshtml";
+}
+
+    <h3>Bạn có chắc chắn muốn xóa @Html.DisplayFor(model => model.BrandName) không ?</h3>
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
+        }
+    </div>
